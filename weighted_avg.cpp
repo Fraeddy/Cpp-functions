@@ -3,6 +3,12 @@ double f_wmeanc(NumericVector x, NumericVector y) {
    if(x.size() != y.size()) return NA_REAL;
    
    int n = x.size();
+
+   for(int i=0; i<n; i++){
+      if(NumericVector::is_na(x[i])) x[i]=0;
+      if(NumericVector::is_na(y[i])) y[i]=0;
+   }
+   
    double res = 0;
    double y_sum = sum(y);
    
