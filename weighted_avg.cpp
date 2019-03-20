@@ -16,7 +16,14 @@ double f_wmeanc(NumericVector x, NumericVector y) {
       if(NumericVector::is_na(y[i])) {
         y[i]=0;
         x[i]=0;
-      }      
+      }
+   }
+   
+   if(sum(x)==0){
+    return NA_REAL;
+   }
+   if(sum(y)==0){
+    return sum(x) / x.size();
    }
    
    double res = 0;
