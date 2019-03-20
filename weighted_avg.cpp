@@ -1,12 +1,22 @@
 double f_wmeanc(NumericVector x, NumericVector y) {
    
-   if(x.size() != y.size()) return NA_REAL;
+   if(x.size() != y.size()) 
+      return NA_REAL;
+   
+   if(x.size() == 1) 
+      return x[0];
    
    int n = x.size();
 
    for(int i=0; i<n; i++){
-      if(NumericVector::is_na(x[i])) x[i]=0;
-      if(NumericVector::is_na(y[i])) y[i]=0;
+      if(NumericVector::is_na(x[i])) {
+        x[i]=0;
+        y[i]=0;
+      }
+      if(NumericVector::is_na(y[i])) {
+        y[i]=0;
+        x[i]=0;
+      }      
    }
    
    double res = 0;
@@ -20,6 +30,5 @@ double f_wmeanc(NumericVector x, NumericVector y) {
       res += x[i] * y[i];
    }
 
-   
    return res;
 }
